@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,
+    initial-scale=1.0,
+    maximum-scale=1.0,
+    user-scalable=no"
+  >
+
+  <meta name="theme-color" content="#09090f">
+
+  <title>Vinglink 4.0</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="app">
+
+  <!-- =================================================
+       LOGIN / CADASTRO
+  ================================================== -->
+
+  <section id="auth" class="auth">
+
+    <div class="auth-card">
+
+      <div class="brand">
+        Vinglink
+      </div>
+
+      <p class="tagline">
+        A tua rede. As tuas conexões.
+      </p>
+
+      <input
+        id="name"
+        class="field"
+        type="text"
+        placeholder="Nome"
+        autocomplete="name"
+      >
+
+      <input
+        id="email"
+        class="field"
+        type="email"
+        placeholder="Email"
+        autocomplete="email"
+      >
+
+      <input
+        id="password"
+        class="field"
+        type="password"
+        placeholder="Palavra-passe"
+        autocomplete="current-password"
+      >
+
+      <div class="auth-buttons">
+
+        <button
+          id="signupBtn"
+          class="primary"
+          type="button"
+        >
+          Criar conta
+        </button>
+
+        <button
+          id="loginBtn"
+          class="secondary"
+          type="button"
+        >
+          Entrar
+        </button>
+
+      </div>
+
+      <button
+        id="resetBtn"
+        class="secondary full"
+        type="button"
+      >
+        Esqueci a palavra-passe
+      </button>
+
+      <p
+        id="authMsg"
+        class="error"
+      ></p>
+
+    </div>
+
+  </section>
+
+
+  <!-- =================================================
+       APLICAÇÃO PRINCIPAL
+  ================================================== -->
+
+  <main
+    id="main"
+    class="hidden"
+  >
+
+
+    <!-- =================================================
+         HOME / FEED
+    ================================================== -->
+
+    <section
+      id="home"
+      class="screen"
+    >
+
+      <header class="top">
+
+        <div class="brand small-brand">
+          Vinglink
+        </div>
+
+        <button
+          class="icon"
+          type="button"
+          data-go="notifications"
+        >
+          ♡
+        </button>
+
+      </header>
+
+
+      <!-- STORIES -->
+
+      <div
+        id="stories"
+        class="stories"
+      ></div>
+
+
+      <!-- FEED -->
+
+      <div id="feed">
+
+        <div class="loading">
+          Carregando publicações...
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         EXPLORAR
+    ================================================== -->
+
+    <section
+      id="explore"
+      class="screen hidden"
+    >
+
+      <header class="top">
+
+        <b>
+          Explorar
+        </b>
+
+      </header>
+
+      <div class="page">
+
+        <input
+          id="search"
+          class="field"
+          type="search"
+          placeholder="Pesquisar pessoas..."
+        >
+
+        <div id="users">
+
+          <div class="loading">
+            Carregando utilizadores...
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         CRIAR PUBLICAÇÃO
+    ================================================== -->
+
+    <section
+      id="create"
+      class="screen hidden"
+    >
+
+      <header class="top">
+
+        <b>
+          Criar publicação
+        </b>
+
+        <button
+          class="icon"
+          type="button"
+          data-go="home"
+        >
+          ×
+        </button>
+
+      </header>
+
+
+      <div class="page">
+
+        <textarea
+          id="caption"
+          class="field textarea"
+          rows="5"
+          placeholder="O que estás a pensar?"
+        ></textarea>
+
+
+        <label class="upload-label">
+
+          📷
+
+          <span>
+            Escolher fotografia
+          </span>
+
+          <input
+            id="photo"
+            type="file"
+            accept="image/*"
+            hidden
+          >
+
+        </label>
+
+
+        <div
+          id="uploadStatus"
+          class="muted"
+        ></div>
+
+
+        <div class="row">
+
+          <button
+            class="secondary"
+            type="button"
+            data-go="home"
+          >
+            Cancelar
+          </button>
+
+          <button
+            id="publishBtn"
+            class="primary"
+            type="button"
+          >
+            Publicar
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         CHAT
+    ================================================== -->
+
+    <section
+      id="chat"
+      class="screen hidden"
+    >
+
+      <header class="top">
+
+        <b>
+          Mensagens
+        </b>
+
+      </header>
+
+
+      <div
+        id="chatList"
+        class="list"
+      >
+
+        <div class="loading">
+          Carregando conversas...
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         PERFIL
+    ================================================== -->
+
+    <section
+      id="profile"
+      class="screen hidden"
+    >
+
+      <header class="top">
+
+        <div class="brand small-brand">
+          Vinglink
+        </div>
+
+        <button
+          id="editBtn"
+          class="icon"
+          type="button"
+        >
+          ⚙
+        </button>
+
+      </header>
+
+
+      <div id="profileBody">
+
+        <div class="loading">
+          Carregando perfil...
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         NOTIFICAÇÕES
+    ================================================== -->
+
+    <section
+      id="notifications"
+      class="screen hidden"
+    >
+
+      <header class="top">
+
+        <b>
+          Notificações
+        </b>
+
+        <button
+          class="icon"
+          type="button"
+          data-go="home"
+        >
+          ×
+        </button>
+
+      </header>
+
+
+      <div
+        id="notificationsBody"
+        class="list"
+      >
+
+        <div class="loading">
+          Carregando notificações...
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         MENU INFERIOR
+    ================================================== -->
+
+    <nav class="nav">
+
+      <button
+        type="button"
+        data-go="home"
+        class="active"
+      >
+
+        <span>
+          ⌂
+        </span>
+
+        <small>
+          Início
+        </small>
+
+      </button>
+
+
+      <button
+        type="button"
+        data-go="explore"
+      >
+
+        <span>
+          ⌕
+        </span>
+
+        <small>
+          Explorar
+        </small>
+
+      </button>
+
+
+      <button
+        type="button"
+        data-go="create"
+        class="create-button"
+      >
+
+        <span>
+          ＋
+        </span>
+
+        <small>
+          Criar
+        </small>
+
+      </button>
+
+
+      <button
+        type="button"
+        data-go="chat"
+      >
+
+        <span>
+          ♡
+        </span>
+
+        <small>
+          Chat
+        </small>
+
+      </button>
+
+
+      <button
+        type="button"
+        data-go="profile"
+      >
+
+        <span>
+          ◯
+        </span>
+
+        <small>
+          Perfil
+        </small>
+
+      </button>
+
+    </nav>
+
+  </main>
+
+
+
+  <!-- =================================================
+       MODAL
+  ================================================== -->
+
+  <div
+    id="modal"
+    class="modal hidden"
+  ></div>
+
+
+
+  <!-- =================================================
+       TOAST
+  ================================================== -->
+
+  <div
+    id="toast"
+    class="toast hidden"
+  ></div>
+
+
+</div>
+
+
+<!-- =================================================
+     JAVASCRIPT DA VINGLINK
+     
+     IMPORTANTE:
+     O teu arquivo deve chamar-se exatamente:
+
+     script.js
+================================================== -->
+
+<script
+  type="module"
+  src="script.js"
+></script>
+
+
+</body>
+</html>
